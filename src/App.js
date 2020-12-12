@@ -1,11 +1,12 @@
 import React, {useEffect} from 'react'
 import {connect} from "react-redux";
 import {fetchHandler} from "./redux-thunk/reducer";
+import Info from "./Info";
 
 const App = (props) => {
     useEffect(() => console.log('render App'))
     return (
-        <>
+        <div>
             <button onClick={() => props.fetchDogHandler()}>fetch Dog</button>
             {props.isLoading
                 ? <p>is loading...</p>
@@ -15,12 +16,13 @@ const App = (props) => {
                         <img src={props.url} alt=""/>
                     </div>
             }
-        </>
+            <Info />
+        </div>
     )
 };
 
 const mapStateToProps = state => {
-    console.log(state)
+    // console.log(state)
     return {
         isLoading: state.fetchStatus.isLoading,
         isError: state.fetchStatus.errorLoading,

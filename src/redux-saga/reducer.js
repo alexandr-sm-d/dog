@@ -9,7 +9,8 @@ const URL = 'https://dog.ceo/api/breeds/image/random'
 let initialState = {
     url: '',
     isLoading: false,
-    errorLoading: false
+    errorLoading: false,
+    info: {title: 'Version: v1.0.0'}
 }
 
 export const fetchReducer = (state = initialState, action) => {
@@ -21,7 +22,6 @@ export const fetchReducer = (state = initialState, action) => {
             }
         }
         case FETCH_SUCCESS: {
-            debugger
             return {
                 ...state,
                 isLoading: false,
@@ -46,11 +46,9 @@ const error = () => ({type: FETCH_FAILED})
 
 
 function* fetchHandler() {
-    debugger
     try {
         yield put(isLoading())
         let img = yield call(() => axios.get(URL).then(response => response.data.message))
-        debugger
         yield put(getImg(img))
     } catch (err) {
         yield put(error())
