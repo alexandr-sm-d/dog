@@ -1,10 +1,8 @@
 import React, {memo, useEffect} from 'react'
 import {connect, useSelector} from "react-redux";
 
-const Info = () => {
+const Info = ({info}) => {
     useEffect(() => console.log('render Info'))
-
-    const info = useSelector(state => state.fetchStatus.info)
 
     return (
         <div>

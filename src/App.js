@@ -6,6 +6,8 @@ import Info from "./Info";
 const App = (props) => {
     useEffect(() => console.log('render App'))
 
+    const info = useSelector(state => state.fetchStatus.info)
+
     return (
         <div>
             <button onClick={() => props.fetchDogHandler()}>fetch Dog</button>
@@ -17,7 +19,7 @@ const App = (props) => {
                         <img src={props.url} alt=""/>
                     </div>
             }
-            <Info />
+            <Info info={info}/>
         </div>
     )
 };
