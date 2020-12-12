@@ -3,7 +3,6 @@ import {connect} from "react-redux";
 
 
 const Info = memo(({info: {title}}) => {
-    console.log(title)
     useEffect(() => console.log('render Info'))
     return (
         <div>
@@ -13,8 +12,12 @@ const Info = memo(({info: {title}}) => {
     )
 })
 
+const getInfoSelector = state => state.fetchStatus.info
+
 const mapStateToProps = state => ({
-    info: state.fetchStatus.info
+    // info: state.fetchStatus.info
+    // info: state
+    info: getInfoSelector(state)
 })
 
 export default connect(mapStateToProps, null)(Info)
