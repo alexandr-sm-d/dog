@@ -4,7 +4,8 @@ import rootSaga, {fetchReducer} from "../redux-saga/reducer";
 
 const sagaMiddleware = createSagaMiddleware()
 const ROOTReducer = combineReducers({
-    fetchStatus: fetchReducer
+    fetchStatus: fetchReducer,
+    titleMain: () => 'v 3.0.0'
 })
 
 const store = createStore(ROOTReducer, applyMiddleware(sagaMiddleware))

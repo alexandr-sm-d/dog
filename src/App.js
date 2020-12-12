@@ -1,12 +1,12 @@
 import React, {useEffect} from 'react'
-import {connect, useSelector} from "react-redux";
+import {connect, shallowEqual, useSelector} from "react-redux";
 import {fetchHandler} from "./redux-thunk/reducer";
 import Info from "./Info";
 
 const App = (props) => {
     useEffect(() => console.log('render App'))
 
-    const info = useSelector(state => state.fetchStatus.info)
+    const title = useSelector(state => state.fetchStatus.info.title)
 
     return (
         <div>
@@ -19,7 +19,9 @@ const App = (props) => {
                         <img src={props.url} alt=""/>
                     </div>
             }
-            <Info info={info}/>
+            <Info
+                title={title}
+            />
         </div>
     )
 };
