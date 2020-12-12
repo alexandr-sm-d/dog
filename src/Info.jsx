@@ -1,9 +1,9 @@
 import React, {memo, useEffect} from 'react'
-import {connect} from "react-redux";
-
+import {connect, useSelector} from "react-redux";
 
 const Info = memo(({info: {title}}) => {
     useEffect(() => console.log('render Info'))
+
     return (
         <div>
             <hr/>
@@ -12,13 +12,13 @@ const Info = memo(({info: {title}}) => {
     )
 })
 
-const getInfoSelector = state => state.fetchStatus.info
+// const getInfoSelector = state => state.fetchStatus.info
+//
+// const mapStateToProps = state => ({
+//     // info: state.fetchStatus.info
+//     // info: state
+//     info: getInfoSelector(state)
+// })
 
-const mapStateToProps = state => ({
-    // info: state.fetchStatus.info
-    // info: state
-    info: getInfoSelector(state)
-})
-
-export default connect(mapStateToProps, null)(Info)
-// export default Info
+// export default connect(mapStateToProps, null)(Info)
+export default Info
