@@ -4,13 +4,14 @@ import {put, all, call, takeEvery} from 'redux-saga/effects'
 const IS_LOADING = 'IS_LOADING'
 const FETCH_SUCCESS = 'FETCH_SUCCESS'
 const FETCH_FAILED = 'FETCH_FAILED'
+const UPDATE_VERSION = 'UPDATE_VERSION'
 
 const URL = 'https://dog.ceo/api/breeds/image/random'
 let initialState = {
     url: '',
     isLoading: false,
     errorLoading: false,
-    info: {title: 'Version: v1.0.0'}
+    info: {title: 1}
 }
 
 export const fetchReducer = (state = initialState, action) => {
@@ -35,6 +36,16 @@ export const fetchReducer = (state = initialState, action) => {
                 errorLoading: true
             }
         }
+        case UPDATE_VERSION: {
+            console.log(state.info)
+            return {
+                ...state,
+                info: {
+                    ...state.info,
+                    title: state.info.title + 1
+                }
+            }
+        }
         default:
             return state
     }
@@ -43,7 +54,10 @@ export const fetchReducer = (state = initialState, action) => {
 const isLoading = () => ({type: IS_LOADING})
 const getImg = (img) => ({type: FETCH_SUCCESS, img})
 const error = () => ({type: FETCH_FAILED})
-
+export const updateVersion = () => {
+    console.log('aaa')
+    return {type: UPDATE_VERSION}
+}
 
 function* fetchHandler() {
     try {

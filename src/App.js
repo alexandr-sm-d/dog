@@ -6,7 +6,7 @@ import Info from "./Info";
 const App = (props) => {
     useEffect(() => console.log('render App'))
 
-    const title = useSelector(state => state.fetchStatus.info.title)
+    // const title = useSelector(state => state.fetchStatus.info.title)
 
     return (
         <div>
@@ -20,7 +20,7 @@ const App = (props) => {
                     </div>
             }
             <Info
-                title={title}
+                // title={title}
             />
         </div>
     )
