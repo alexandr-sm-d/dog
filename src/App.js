@@ -27,7 +27,6 @@ const App = (props) => {
 };
 
 const mapStateToProps = state => {
-    // console.log(state)
     return {
         isLoading: state.fetchStatus.isLoading,
         isError: state.fetchStatus.errorLoading,
