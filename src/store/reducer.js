@@ -28,51 +28,6 @@ export const updateVersionTA = createAction(UPDATE_VERSION)() //..TA = use types
 export const showAuthorTA = createAction(SHOW_AUTHOR, (payload: string) => payload)()
 
 
-export const fetchReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case IS_LOADING: {
-            return {
-                ...state,
-                isLoading: true
-            }
-        }
-        case FETCH_SUCCESS: {
-            debugger
-            return {
-                ...state,
-                isLoading: false,
-                // url: action.img
-                url: action.payload.img // TA
-            }
-        }
-        case FETCH_FAILED: {
-            return {
-                ...state,
-                isLoading: false,
-                errorLoading: true
-            }
-        }
-        case UPDATE_VERSION: {
-            console.log(state.info)
-            return {
-                ...state,
-                info: {
-                    ...state.info,
-                    title: state.info.title + 1
-                }
-            }
-        }
-        case SHOW_AUTHOR: {
-            return {
-                ...state,
-                author: action.payload
-            }
-        }
-        default:
-            return state
-    }
-}
-
 export const fetchReducerTA = createReducer(initialState, {
     [getType(fetchDogImage.request)]: state => ({
         ...state,
@@ -115,13 +70,7 @@ function* fetchHandlerTA() {
     }
 }
 
-function* watchFetchHandler() {
+export function* watchFetchHandler() {
     // yield takeEvery('FETCH_ASYNC', fetchHandler)
     yield takeLatest('FETCH_ASYNC', fetchHandlerTA)
-}
-
-export default function* rootSaga() {
-    yield all([
-        watchFetchHandler()
-    ])
 }

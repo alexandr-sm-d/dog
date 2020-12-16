@@ -1,7 +1,7 @@
-import React, {useEffect} from 'react'
-import {connect, shallowEqual, useSelector} from "react-redux";
-import {fetchHandler} from "./redux-thunk/reducer";
+import React from 'react'
+import {connect, useSelector} from "react-redux";
 import Info from "./Info";
+
 
 const App = (props) => {
     const title = useSelector(state => state.fetchStatus.info.title)
@@ -34,15 +34,7 @@ const mapStateToProps = state => {
     }
 }
 
-//  REDUX-THUNK
-// const mapStateDispatchToProps = dispatch => {
-//     return {
-//         fetchDogHandler: () => dispatch(fetchHandler())
-//     }
-// }
 
-
-//  REDUX-SAGA
 const mapStateDispatchToProps = dispatch => {
     return {
         fetchDogHandler: () => dispatch(fetchAsync())
