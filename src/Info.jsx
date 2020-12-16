@@ -1,10 +1,11 @@
 import React, {memo, useEffect} from 'react'
-import {connect, useSelector} from "react-redux";
-import {showAuthor, updateVersion} from "./redux-saga/reducer";
+import {connect, useDispatch, useSelector} from "react-redux";
+import {showAuthor, showAuthorTA, updateVersion, updateVersionTA} from "./redux-saga/reducer";
 
 const Info = (props) => {
-    debugger
     const author = 'Alexandr'
+
+    const dispatch = useDispatch()
 
     useEffect(() => console.log('render Info'))
 
@@ -13,8 +14,9 @@ const Info = (props) => {
             <hr/>
             Info about app: version {props.title}
             <div>
-                <button onClick={() => props.updateVersion()}>Update version</button>
-                <button onClick={() => props.showAuthor(author)}>Show Author</button>
+                <button onClick={() => dispatch(updateVersionTA())}>Update version</button>
+                <button onClick={() => dispatch(showAuthor(author))}>Show Author</button>
+                {/*<button onClick={() => dispatch(showAuthorTA(author))}>Show Author</button>*/}
                 <div>
                     Author : {props.author}
                 </div>
@@ -23,11 +25,13 @@ const Info = (props) => {
     )
 }
 
-// export default Info
-const mstp = state => ({
-    title: state.fetchStatus.info.title,
-    author: state.fetchStatus.author
-})
+export default Info
+
+
+// const mstp = state => ({
+//     title: state.fetchStatus.info.title,
+//     author: state.fetchStatus.author
+// })
 
 // function mdtp(dispatch) {
 //     return {
@@ -37,9 +41,10 @@ const mstp = state => ({
 //     }
 // }
 
-const mdtp = dispatch => ({
-    updateVersion: () => dispatch(updateVersion()),
-    showAuthor: (payload) => dispatch(showAuthor(payload))
-})
+// const mdtp = dispatch => ({
+//     updateVersion: () => dispatch(updateVersion()),
+//     showAuthor: (payload) => dispatch(showAuthor(payload))
+// })
 
-export default connect(mstp, mdtp)(Info)
+// export default connect(mstp, mdtp)(Info)
+// export default connect(mstp)(Info)
