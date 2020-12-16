@@ -3,11 +3,9 @@ import {connect, useDispatch, useSelector} from "react-redux";
 import {showAuthor, showAuthorTA, updateVersion, updateVersionTA} from "./redux-saga/reducer";
 
 const Info = (props) => {
-    const author = 'Alexandr'
-
     const dispatch = useDispatch()
 
-    useEffect(() => console.log('render Info'))
+    const author = 'Alexandr'
 
     return (
         <div>
@@ -15,8 +13,7 @@ const Info = (props) => {
             Info about app: version {props.title}
             <div>
                 <button onClick={() => dispatch(updateVersionTA())}>Update version</button>
-                <button onClick={() => dispatch(showAuthor(author))}>Show Author</button>
-                {/*<button onClick={() => dispatch(showAuthorTA(author))}>Show Author</button>*/}
+                <button onClick={() => dispatch(showAuthorTA(author))}>Show Author</button>
                 <div>
                     Author : {props.author}
                 </div>

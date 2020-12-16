@@ -4,8 +4,6 @@ import {fetchHandler} from "./redux-thunk/reducer";
 import Info from "./Info";
 
 const App = (props) => {
-    useEffect(() => console.log('render App'))
-
     const title = useSelector(state => state.fetchStatus.info.title)
     const author = useSelector(state => state.fetchStatus.author)
 

@@ -1,10 +1,11 @@
 import {createStore, applyMiddleware, combineReducers} from 'redux'
 import createSagaMiddleware from 'redux-saga'
 import rootSaga, {fetchReducer} from "../redux-saga/reducer";
+import {fetchReducerTA} from "./reducer";
 
 const sagaMiddleware = createSagaMiddleware()
 const ROOTReducer = combineReducers({
-    fetchStatus: fetchReducer,
+    fetchStatus: fetchReducerTA,
 })
 
 const store = createStore(ROOTReducer, applyMiddleware(sagaMiddleware))
