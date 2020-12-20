@@ -4,7 +4,12 @@ import Info from "./Info";
 
 
 const App = (props) => {
-    const title = useSelector(state => state.fetchStatus.info.title)
+    const getTitle = state => {
+        console.log('launch getTitle selector')
+        return state.fetchStatus.info.title
+    }
+
+    const title = useSelector(getTitle)
     const author = useSelector(state => state.fetchStatus.author)
 
     return (

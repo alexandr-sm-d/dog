@@ -8,6 +8,7 @@ const FETCH_SUCCESS = 'FETCH_SUCCESS'
 const FETCH_FAILED = 'FETCH_FAILED'
 const UPDATE_VERSION = 'UPDATE_VERSION'
 const SHOW_AUTHOR = 'SHOW_AUTHOR'
+const FAKE_COUNT = 'FAKE_COUNT'
 
 const URL = 'https://dog.ceo/api/breeds/image/random'
 let initialState = {
@@ -15,7 +16,8 @@ let initialState = {
     isLoading: false,
     errorLoading: false,
     info: {title: 1},
-    author: ''
+    author: '',
+    fake_count: 1
 }
 
 const fetchDogImage = createAsyncAction(
@@ -26,6 +28,8 @@ const fetchDogImage = createAsyncAction(
 
 export const updateVersionTA = createAction(UPDATE_VERSION)() //..TA = use typesafe-action
 export const showAuthorTA = createAction(SHOW_AUTHOR, (payload: string) => payload)()
+
+export const fakeCount = createAction(FAKE_COUNT)()
 
 
 export const fetchReducerTA = createReducer(initialState, {
@@ -54,6 +58,10 @@ export const fetchReducerTA = createReducer(initialState, {
     [getType(showAuthorTA)]: (state, {payload}) => ({
         ...state,
         author: payload
+    }),
+    [getType(fakeCount)]: state => ({
+        ...state,
+        fake_count: state.fake_count + 1
     })
 })
 
